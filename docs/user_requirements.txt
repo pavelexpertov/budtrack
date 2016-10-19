@@ -3,10 +3,15 @@ topic (i.e. money for lunch).
 
 These are the following features the program is supposed to do:
 
+Keep in mind that for most requirements, cmd interface is required
+to meet them.
+
 1. Be able to make a budget that can contain a set of topics and their
     limits.
 2. Be able to create a topic (with a name) and make a budget limit.
-3. Make the budget limit either a week or a month.
+3. Make the budget limit that lasts for either a week or a month.
 4. Be able to update an amount accumulated for that topic.
 5. The program must allow users to make a given topic's leftover to
     be transferred to another week/month as an option.
+6. Program must list the topic's limits by specifying a budget.
+7. Be able to record the budget with all topics and their limits.
