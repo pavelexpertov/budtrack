@@ -1,0 +1,12 @@
+The program's simple purpose is to track a budget limit for a given
+topic (i.e. money for lunch).
+
+These are the following features the program is supposed to do:
+
+1. Be able to make a budget that can contain a set of topics and their
+    limits.
+2. Be able to create a topic (with a name) and make a budget limit.
+3. Make the budget limit either a week or a month.
+4. Be able to update an amount accumulated for that topic.
+5. The program must allow users to make a given topic's leftover to
+    be transferred to another week/month as an option.
