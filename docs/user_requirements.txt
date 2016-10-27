@@ -1,17 +1,20 @@
 The program's simple purpose is to track a budget limit for a given
 topic (i.e. money for lunch).
 
-These are the following features the program is supposed to do:
-
+These are the following features the program is supposed to do.
 Keep in mind that for most requirements, cmd interface is required
 to meet them.
 
+User requirements
 1. Be able to make a budget that can contain a set of topics and their
-    limits.
+    monetary limits.
+    Each topic needs to have a name to identify itself.
 2. Be able to create a topic (with a name) and make a budget limit.
-3. Make the budget limit that lasts for either a week or a month.
-4. Be able to update an amount accumulated for that topic.
-5. The program must allow users to make a given topic's leftover to
+3. Be able to managed the budget and its topics by removing the whole
+    budget or its individual topics.
+4. Make the budget limit that lasts for either a week or a month.
+5. Be able to update an amount accumulated for that topic.
+6. The program must allow users to make a given topic's leftover to
     be transferred to another week/month as an option.
-6. Program must list the topic's limits by specifying a budget.
-7. Be able to record the budget with all topics and their limits.
+7. Program must list the topic's limits by specifying a budget.
+8. Be able to record the budget with all topics and their limits.

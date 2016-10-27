@@ -1,0 +1,41 @@
+The command line user interface must:
+1. Allow users to execute one line commands to perform a certain action.
+2. Provide a help output in case a user forgets on how to perform a
+certain operation.
+
+
+Structure of information data.
+Abstract view of structure:
+A user can create a named budget and it can contain a set of named topics.
+The topics represent certain parts of a budget and each one of them
+will have a monetary limit, where a certain amount of money is allowed
+to be spent for (thus tracking how much a user has spent so far).
+Also the budget will have a period type to indicate how often the limits
+can be reset (i.e. either weekly or monthly).
+
+Technical view:
+Budget Structure
+The data structure will be stored in json/dictionary data type.
+The budget will represent as an overall container structure that will
+contain different key values:
+budget_name -- to describe a budget
+topics -- a dictionary that will contain topics, their respective
+          limits and other related attributes.
+reset_period_type -- a key value to indiciate how often to reset the
+          limits.
+creation_date -- a date to indicate creation of a budget.
+reset_date -- a date to indicate when topics were reset. If the
+              budget has just been created, then it will have the same
+              date as the creation one.
+move_leftover -- a boolean to indicate whether to carry over left over
+                 to a next period of topic's limit (thus increasing it)
+                 or not.
+
+Topic Structure
+Topic structure will be a dictionary structure to contain certain
+attributes:
+limit -- a monetary limit where a money spending can't go over it.
+topic_name -- to describe topic.
+original_limit -- a variable to contain original limit if move_leftover
+is set to true, so if the limit has been reached or over reached, the
+value can be assigned to limit.
