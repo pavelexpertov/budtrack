@@ -4,7 +4,7 @@ The command line user interface must:
 certain operation.
 
 
-Structure of information data.
+STRUCTURE OF INFORMATION DATA
 Abstract view of structure:
 A user can create a named budget and it can contain a set of named topics.
 The topics represent certain parts of a budget and each one of them
@@ -39,3 +39,58 @@ topic_name -- to describe topic.
 original_limit -- a variable to contain original limit if move_leftover
 is set to true, so if the limit has been reached or over reached, the
 value can be assigned to limit.
+
+Storing/Saving the data structure.
+Since the data will be stored in a dict data structure, json parser
+can be used to convert it and store it in a file. Thus it's possible to
+use the same parser to do restoring of it.
+
+ARCHITECTURAL STRUCTURE
+This is a list of modules that will exist to make up the whole program:
+- constants
+- cmd_user_interface
+- request_processor
+- budget_operations
+- file_and_dir_operations
+- error_handling
+- budtrack
+
+constants module:
++ it will contain certain constants that will be used throughout the
+program to keep user's input arguments consistent.
+
+cmd_user_interface module:
++ it's responsible for presenting command line options to the user.
++ it parses user's input into a dictionary, which will be used by
+request_processor.
++ it uses docopt to do the above.
+
+request_processor module:
++ it contains a function that decides what to do with the input.
++ it contains a set of functions to perform small tasks that will make
+the whole user request.
++ it uses budget_operations functions to perform a certain operation
+based on a user's input.
++ it uses operations from budget_operations module to do what's needed.
+
+budget_track module:
++ it contains functions that perform different budget-related
+operations, which are based upon user's requirements.
++ the functions will use an Exception class to throw an error when
+functions discover it. budtrack module should catch them and report
+them to the user.
+
+file_and_dir_operations module:
++ it contains functions responsible for performing file and directory
+operations.
++ it will contain functions that will save or get data from files.
++ it will contain a function that will create a directory to contain
+all budget files.
+
+error_handling module:
++ it contains a function that will create an exception class and pass
+a custom error message to it.
+
+budtrack module:
++ it is a main function that needs to be run and passed with arguments
+to perform a certain operation.

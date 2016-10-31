@@ -10,7 +10,7 @@ User requirements
     monetary limits.
     Each topic needs to have a name to identify itself.
 2. Be able to create a topic (with a name) and make a budget limit.
-3. Be able to managed the budget and its topics by removing the whole
+3. Be able to manage the budget and its topics by removing the whole
     budget or its individual topics.
 4. Make the budget limit that lasts for either a week or a month.
 5. Be able to update an amount accumulated for that topic.
