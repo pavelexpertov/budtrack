@@ -34,6 +34,7 @@ move_leftover -- a boolean to indicate whether to carry over left over
 Topic Structure
 Topic structure will be a dictionary structure to contain certain
 attributes:
+current_spending -- a current amount of money to spent so far.
 limit -- a monetary limit where a money spending can't go over it.
 topic_name -- to describe topic.
 original_limit -- a variable to contain original limit if move_leftover
@@ -64,6 +65,8 @@ cmd_user_interface module:
 + it parses user's input into a dictionary, which will be used by
 request_processor.
 + it uses docopt to do the above.
++ also it will contain a set of functions that will be responsible for
+getting user's input during budget operations.
 
 request_processor module:
 + it contains a function that decides what to do with the input.
@@ -94,3 +97,10 @@ a custom error message to it.
 budtrack module:
 + it is a main function that needs to be run and passed with arguments
 to perform a certain operation.
+
+BUDGET OPERATIONS BASED ON PARSED INPUT
+The way that operation functions work is that they return a string once
+a certain request is done. This is because main function in
+request_processor module will output this string to inform the user of
+a successful operation or a certain piece of information based on a given
+request.

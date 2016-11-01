@@ -1,0 +1,40 @@
+format of function signature --> return_type name_of_functions(type argument)
+
+budget_track module:
+
+void run() -- main function that will run.
+
+---------------------------------------------------------------------
+
+cmd_user_interface module:
+
+command line pattern literal -- for use by docopt module.
+dict get_parsed_user_input() -- returns a parsed user input.
+
+---------------------------------------------------------------------
+
+request_processor module:
+
+void process_request(dict user_input) -- takes user input to perform
+a budget-related request. 
+
+string _create_budget(string budget_name, string reset_period_type, 
+	bool move_leftover) -- creates a brand new budget and stores
+	it as a file.
+
+string _create_topic(string budget_name, string topic_name, 
+float limit) -- creates a topic for a particular budget.
+
+string _change_budget(string budget_name, string target_key, 
+string change_value, bool keep_topic_data='') -- edits certain bits information for budget.
+
+string _change_topic(string budget_name, string topic_name, 
+string target_key, string change_value) -- edits certain bits of information for topic.
+
+string _remove_budget(string budget_name) -- removes a given budget.
+string _remove_topic(string budget_name, string topic_name) -- removes a given topic. 
+
+string _update_current_spending(string budget_name, string topic_name, 
+float amount) -- update current spending for a given topic and budget.
+
+
