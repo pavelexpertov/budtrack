@@ -1,3 +1,6 @@
+TECHNICAL REQUIREMENTS BASED ON SIMPLE USER REQUIREMENTS
+v0.1
+
 The command line user interface must:
 1. Allow users to execute one line commands to perform a certain action.
 2. Provide a help output in case a user forgets on how to perform a
@@ -15,9 +18,13 @@ can be reset (i.e. either weekly or monthly).
 
 Technical view:
 Budget Structure
-The data structure will be stored in json/dictionary data type.
-The budget will represent as an overall container structure that will
-contain different key values:
+The data structure will be represented as a class with its own methods.
+The reason is because using individual functions and a dictionary
+doesn't seem very cohesive and functional, since operations are stored
+in one file while data is stored as the others. Making data structure as
+a class allows to hide data and certain functions away from outside.
+The Budget class will represent as an overall container structure that
+will contain different attributes:
 budget_name -- to describe a budget
 topics -- a dictionary that will contain topics, their respective
           limits and other related attributes.
@@ -42,25 +49,25 @@ is set to true, so if the limit has been reached or over reached, the
 value can be assigned to limit.
 
 Storing/Saving the data structure.
-Since the data will be stored in a dict data structure, json parser
-can be used to convert it and store it in a file. Thus it's possible to
+Since the data will be stored in a class, a certain class parser should
+be able to convert it and store it in a file. Thus it's possible to
 use the same parser to do restoring of it.
 
 ARCHITECTURAL STRUCTURE
 This is a list of modules that will exist to make up the whole program:
 - constants
-- cmd_user_interface
+- input_user_interface
+- output_user_interface
 - request_processor
-- budget_operations
+- Budget class
 - file_and_dir_operations
-- error_handling
 - budtrack
 
 constants module:
 + it will contain certain constants that will be used throughout the
 program to keep user's input arguments consistent.
 
-cmd_user_interface module:
+input_user_interface module:
 + it's responsible for presenting command line options to the user.
 + it parses user's input into a dictionary, which will be used by
 request_processor.
@@ -68,15 +75,21 @@ request_processor.
 + also it will contain a set of functions that will be responsible for
 getting user's input during budget operations.
 
+output_user_interface module:
++ it's responsible for making output messages for the user to see.
++ it has functions that are specified based on each function in
+request_processor.
++ Budget instance must be passed with certain user's arguments to make
+an output for the user.
+
 request_processor module:
 + it contains a function that decides what to do with the input.
 + it contains a set of functions to perform small tasks that will make
 the whole user request.
-+ it uses budget_operations functions to perform a certain operation
++ it uses Budget class's functions to perform a certain operation
 based on a user's input.
-+ it uses operations from budget_operations module to do what's needed.
 
-budget_track module:
+Budget class module:
 + it contains functions that perform different budget-related
 operations, which are based upon user's requirements.
 + the functions will use an Exception class to throw an error when
@@ -86,21 +99,63 @@ them to the user.
 file_and_dir_operations module:
 + it contains functions responsible for performing file and directory
 operations.
-+ it will contain functions that will save or get data from files.
++ it will contain functions that will save or get class data from files.
 + it will contain a function that will create a directory to contain
 all budget files.
-
-error_handling module:
-+ it contains a function that will create an exception class and pass
-a custom error message to it.
 
 budtrack module:
 + it is a main function that needs to be run and passed with arguments
 to perform a certain operation.
 
-BUDGET OPERATIONS BASED ON PARSED INPUT
-The way that operation functions work is that they return a string once
-a certain request is done. This is because main function in
-request_processor module will output this string to inform the user of
-a successful operation or a certain piece of information based on a given
-request.
+ERROR HANDLING IN PERFORMING BUDGET'S OPERATIONS
+A main top function, within request_processor, will have a try and catch
+block that will capture generic exceptions to display errors to the
+user. The exceptions will be made by a private function in Budget,
+so when a budget operation encounters a problem, it can generate an
+appropriate error when it has variables and values at hand.
+
+OUTPUT TO THE USERS
+OPTIONS:
+1. Make budget's functions to perform output.
+Pros:
+- All related information is available at hand to generate appropriate
+messages.
+- No need for an extra module or making request_processor more cluttered
+with output functions (which don't belong to it).
+Cons:
+- It makes internals exposed to certain functions (thus if change of
+attributes might affect the output functions)
+- Makes the class very cluttered with output function for each
+operation. Thus it makes it less maintainable.
+
+2. Make request_processor's operation functions (either using output
+subfunctions or making operation ones do it themselves.)
+Pros:
+- Doesn't add an extra module or make Budget class with unrelated
+functions.
+Cons:
+- Make request_processor cluttered with functions that doesn't belong
+to cohesiveness of the module.
+
+3. Make a separate module to contain output functions based on each
+operation in request_processor.
+Pros:
+- Doesn't clutter both Budget class and request_processor module.
+- Separates concerns well.
+Cons:
+- Adds an additional module, increasing file relation complexity.
+
+DECISION FOR OUTPUT: 3. Separate module for having specialised output
+functions.
+The way it will work is that a function from request_processor will
+pass certain values (i.e. some budget's attributes or/and user's
+arguments).
+
+USER INTERACTION WHEN DANGEROUS FUNCTIONS ARE PERFORMING
+The user interaction happens at request_processor's functions for two
+reasons:
+1. input_user_interface is responsible for taking a user's input.
+2. Certain operation functions are easy to identify to know where to
+edit implementation of such interaction.
+3. Budget class is a container of data and its functions wouldn't be
+cohesive with the purpose if it interacted with the user.
