@@ -1,0 +1,34 @@
+Made decision in: v0.1
+date: 03/11/16
+OPTIONS:
+1. Make budget's functions to perform output.
+Pros:
+- All related information is available at hand to generate appropriate
+messages.
+- No need for an extra module or making request_processor more cluttered
+with output functions (which don't belong to it).
+Cons:
+- It makes internals exposed to certain functions (thus if change of
+attributes might affect the output functions)
+- Makes the class very cluttered with output function for each
+operation. Thus it makes it less maintainable.
+
+2. Make request_processor's operation functions (either using output
+subfunctions or making operation ones do it themselves.)
+Pros:
+- Doesn't add an extra module or make Budget class with unrelated
+functions.
+Cons:
+- Make request_processor cluttered with functions that doesn't belong
+to cohesiveness of the module.
+
+3. Make a separate module to contain output functions based on each
+operation in request_processor.
+Pros:
+- Doesn't clutter both Budget class and request_processor module.
+- Separates concerns well.
+Cons:
+- Adds an additional module, increasing file relation complexity.
+
+DECISION FOR OUTPUT: 3. Separate module for having specialised output
+functions.
