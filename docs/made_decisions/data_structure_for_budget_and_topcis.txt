@@ -4,5 +4,6 @@ date: 03/11/16
 The reason (for changing data structure from using json/dict to a class)
 is because using individual functions and a dictionary doesn't seem
 very cohesive and functional, since operations are stored in one file
-while data is stored as the others. Making data structure as a class 
-allows to hide data and certain functions away from outside.
+while data is stored as other files. Making data structure as a class
+allows to hide data and certain functions away from outside functions
+within a module that handles it.

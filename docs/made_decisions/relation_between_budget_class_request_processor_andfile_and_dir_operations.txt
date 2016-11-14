@@ -1,0 +1,11 @@
+Made decision in: v0.1
+date: 14/11/16
+
+Context:
+At the moment it seems that a request_processor module and
+file_and_dir_operations (the relation to show that hasn't been drawn)
+have an associative relationships with Budget class and it looks like
+that it complicates the modules' dependencies. Therefore, I have decided
+to make file_and_dir_operations module to have exclusive relationship
+with the class and get rid of request_processor's relationship.
+(The change is shown on Overview of Architectural Structrure.odg).

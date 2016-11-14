@@ -28,7 +28,7 @@ Pros:
 - Doesn't clutter both Budget class and request_processor module.
 - Separates concerns well.
 Cons:
-- Adds an additional module, increasing file relation complexity.
+- Adds an additional module, increasing module relation complexity.
 
 DECISION FOR OUTPUT: 3. Separate module for having specialised output
 functions.
