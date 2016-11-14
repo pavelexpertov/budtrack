@@ -75,8 +75,8 @@ output_user_interface module:
 + it's responsible for making output messages for the user to see.
 + it has functions that are specified based on each function in
 request_processor.
-+ Budget instance must be passed with certain user's arguments to make
-an output for the user.
++ certain values need to be passed to the functions for hiding Budget's
+public interface.  
 
 request_processor module:
 + it contains a function that decides what to do with the input.
