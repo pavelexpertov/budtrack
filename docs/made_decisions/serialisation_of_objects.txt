@@ -1,0 +1,6 @@
+Made decision in: v0.1
+date: 10/12/16
+
+I have done a bit more research on how to save arbitrary objects
+and I have disovered a module called 'pickle' that can do the job
+easily.

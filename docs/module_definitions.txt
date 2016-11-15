@@ -12,74 +12,89 @@ input_user_interface module:
 
 command line pattern literal -- for use by docopt module.
 dict get_parsed_user_input() -- returns a parsed user input.
+There are other functions that play an important part in
+parsing user's input arguments.
 
 ---------------------------------------------------------------------
 
 output_user_interface module:
 
 void output_successful_budget_creation(string budget_name)
-                                       -- prints a message after
+                                       -- print a message after
                                        creating a budget file
                                        successfully.
 
 void output_successful_topic_creation(string budget_name,
                                       string topic_name)
-                                      -- prints a message after
+                                      -- print a message after
                                       creating a topic for a budget
                                       successfully.
 
 void output_successful_budget_removal(string budget_name)
-                                      -- prints a message after
+                                      -- print a message after
                                       deleting a budget successfully.
 
 void output_successful_topic_removal(string budget_name,
                                      string topic_name)
-                                     -- prints a message after
+                                     -- print a message after
                                      deleting a topic successfully.
 
-void output_successful_reset_period(string budget_name,
-                                    string reset_type)
-                                    -- prints a message after
+void output_successful_change_reset_period(string budget_name,
+                                           string reset_type)
+                                    -- print a message after
                                     changing reset type in a budget.
 
-void output_updated_spending_amount_for_topic(string budget_name,
-                                              string budget_topic,
-                                              float current_spending)
-                                              -- prints a message
-                                              after updating current
-                                              spending for a topic.
+void output_incremented_spending_amount_for_topic(string budget_name,
+                                            string budget_topic,
+                                            string current_topic_status)
+                                            -- print a message
+                                            after updating current
+                                            spending for a topic.
 
 void print_list_of_budgets_topic(string budget_name,
                                  string topics_string_list)
                                  -- print a list of a budget's topics
-                                 and their contents.
+                                 and their attributes.
 
 ---------------------------------------------------------------------
 
 request_processor module:
 
-void process_request(dict user_input) -- takes user input to perform
+void process_request(dict user_input) -- take user input to perform
 a budget-related request.
 
+Budget _get_budget_object(string budget_name) -- return a budget object
+                                                 based on a name
+                                                 provided.
+
+void _perform_an_operation(dict user_input)
+                          -- perform an operation based on user's
+                             command.
+
+void _save_budget_object(Budget budget_object) -- save budget object
+                                                to a file.
+
 void _create_budget(string budget_name, string reset_period_type,
-	                bool move_leftover) -- creates a brand new budget
-                    and stores it as a file.
+	                bool move_leftover) -- create a brand new budget
+                    for the program.
 
 void _add_new_topic(string budget_name, string topic_name,
-float limit) -- creates a topic for a particular budget.
+float limit) -- create a topic for a particular budget.
 
-void _remove_budget(string budget_name) -- removes a given budget.
-void _remove_topic(string budget_name, string topic_name) -- removes a given topic.
+void _remove_budget(string budget_name) -- remove a given budget.
+void _remove_topic(string budget_name, string topic_name) -- remove a given topic.
 
-void _change_reset_period(string period_type)
+void _change_reset_period(string budget_name, string period_type)
+                                            -- change reset type in
+                                            a named budget.
 
-void _update_topics_current_spending(string budget_name,
+void _increment_topics_current_spending(string budget_name,
                                      string topic_name,
                                     float amount)
                                     -- update current spending for a
                                     given topic and budget.
 
-void _list_budgets_topics_and_expenditures(string budget_name) -- lists
+void _list_budgets_topics_and_expenditures(string budget_name) -- list
                                            budget's topics, spending
                                            limits and their current
                                            spending.
@@ -91,7 +106,7 @@ Budget class module:
 Note that these functions are methods to a class of Budget.
 
 Budget __init__(string budget_name, string reset_period_type,
-                bool move_leftover) -- Creates an instance of a budget.
+                bool move_leftover) -- Create an instance of a budget.
 
 void add_topic(string topic_name, float limit) -- Create a new topic
                                                within a budget object.
@@ -107,9 +122,13 @@ void increment_current_spending_to_topic(string topic_name,
                                          -- Increment a topic's
                                          current spending.
 
-string generate_topics_string_summary() -- returns a string that
+string get_current_topic_status(string topic_name) -- Return a string
+                                                   showing current
+                                                   topic's status.
+
+string generate_summary_of_topics_attributes() -- return a string that
                                         represents a list of topics
-                                        and their contents.
+                                        and their attributes.
 
 
 ---------------------------------------------------------------------
@@ -121,6 +140,8 @@ void create_budget(string budget_name, string reset_period_type,
                    -- Creates a object with passed values and then saves
                    it to a file.
 
+void remove_budget(string budget_name) -- Remove a file that represents
+                                          a budget.
 
 void save_budget(Budget budget_object) -- Save a Budget object to a
                                           file.
@@ -128,23 +149,16 @@ void save_budget(Budget budget_object) -- Save a Budget object to a
 Budget get_budget(string budget_name) -- Return a Budget object based
                                          on a file name.
 
-string _read_from_file(string budget_name) -- Return a file's content
-                                              according to a file name.
-Budget _convert_string_to_object(string budget_string_content)
-                                 -- return a converted object based
-                                 on a passed string.
+Budget _unpickle_from_file(string budget_name) -- Return an 'unpickled'
+                                                  Budget object from a
+                                                  given file.
 
-string _write_to_file(string budget_string_content, budget_file_name)
-                        -- Write a string to a file with a passed name.
-
-dict _convert_object_to_string(Budget budget_object)
-                               -- Returns a dict containing budget's
-                                  name and a string content of the
-                                  object.
+void _pickle_to_file(Budget budget_object) -- Pickle a Budget object to
+                                              a file.
 
 Budget _create_budget_instance(string budget_name,
                                string reset_period_type,
 	                           bool move_leftover)
-                               -- Returns an instance of a newly
-                               created budget class.
+                               -- Return a newly created instance of a
+                               budget class.
 ---------------------------------------------------------------------

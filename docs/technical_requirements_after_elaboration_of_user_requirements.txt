@@ -26,7 +26,8 @@ topics -- a dictionary that will contain topics, their respective
           limits and other related attributes.
 reset_period_type -- a key value to indiciate how often to reset the
           limits.
-creation_date -- a date to indicate creation of a budget.
+budget_date_object -- a BudgetDate object to indicate creation date of a
+                      budget.
 reset_date -- a date to indicate when topics were reset. If the
               budget has just been created, then it will have the same
               date as the creation one.
@@ -56,6 +57,7 @@ This is a list of modules that will exist to make up the whole program:
 - output_user_interface
 - request_processor
 - Budget class
+- BudgetDate class
 - file_and_dir_operations
 - budtrack
 
@@ -76,7 +78,7 @@ output_user_interface module:
 + it has functions that are specified based on each function in
 request_processor.
 + certain values need to be passed to the functions for hiding Budget's
-public interface.  
+public interface.
 
 request_processor module:
 + it contains a function that decides what to do with the input.
@@ -92,6 +94,10 @@ operations, which are based upon user's requirements.
 functions discover it. budtrack module should catch them and report
 them to the user.
 
+BudgetDate class module:
++ it contains functions to perform time operations.
++ it contains information abuot budget's creation and reset dates.
+
 file_and_dir_operations module:
 + it contains functions responsible for performing file and directory
 operations.
@@ -104,11 +110,15 @@ budtrack module:
 to perform a certain operation.
 
 ERROR HANDLING IN PERFORMING BUDGET'S OPERATIONS
-A main top function, within request_processor, will have a try and catch
-block that will capture generic exceptions to display errors to the
-user. The exceptions will be made by a private function in Budget,
-so when a budget operation encounters a problem, it can generate an
-appropriate error when it has variables and values at hand.
+A function, which is responsible for deciding which request to execute
+according to user input and it's within request_processor, will have a
+try and catch block that will capture generic exceptions to display
+errors to the user. The exceptions will be made by public or private
+functions in Budget class, so when a budget operation encounters a
+problem, it can generate an appropriate error when it has variables and
+values at hand. Thus other operations that are performed by a top-level
+function in request_processor module are not affected by these
+exceptions.
 
 OUTPUT TO THE USERS
 The way it will work is that a function from request_processor will
