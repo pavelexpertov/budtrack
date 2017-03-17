@@ -2,7 +2,8 @@
 program.
 Keep in mind that you will have to install module dependencies (via
 requirements.txt) separately.
-Furthermore, you need to run the script as a user
+Furthermore, you need to run the script as a sudo to have a privilege
+to copy a contents of budtrack source folder to usr/bin directory.
 '''
 
 import os
