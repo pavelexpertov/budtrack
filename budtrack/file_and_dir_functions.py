@@ -1,10 +1,4 @@
-'''Functions responsible for performing file and directory operations.
-
-Exported functions:
-create_budget -- used in request_processor.py.
-save_budget -- used in request_processor.py.
-get_budget -- used in request_processor.py.
-'''
+'''Functions responsible for performing file and directory operations'''
 
 import os
 import pickle

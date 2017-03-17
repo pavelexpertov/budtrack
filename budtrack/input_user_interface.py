@@ -2,12 +2,14 @@
 Budtrack
 
 Usage:
-    budtrack add budget <budget-name> (weekly|monthly) (move_leftover|discard_leftover)
+    budtrack add budget <budget-name> (weekly|monthly)
+    (move_leftover|discard_leftover)
     budtrack add topic <budget-name> <topic-name> <spending-limit>
     budtrack remove budget <budget-name>
     budtrack remove topic <budget-name> <topic-name>
     budtrack change reset_type <budget-name> (weekly|monthly)
-    budtrack update spending <budget-name> <topic-name> <spending-amount>
+    budtrack update spending <budget-name> <topic-name>
+    <spending-amount>
     budtrack list budgets
     budtrack list topics <budget-name>
 '''

@@ -1,8 +1,4 @@
-'''Functions responsible for handling user's request.
-
-Expported functions:
-process_request -- used by budtrack.py.
-'''
+'''Functions responsible for handling user's request.'''
 
 import constants
 import file_and_dir_functions as file_operations
