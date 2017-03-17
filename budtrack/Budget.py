@@ -7,7 +7,7 @@ class Budget():
     '''Class to represent a budget.
 
     Attributes:
-    budget_name: Budget's name.
+        budget_name: Budget's name.
         move_leftover: A boolean to indicate whether to move unspent
                        spending to another period iteration in a topic.
         topics: A dictionary to contain sub-dictionaries of topics.
